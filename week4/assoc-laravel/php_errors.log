@@ -1,0 +1,40 @@
+[16-Jan-2017 03:48:16 UTC] PHP Warning:  Uncaught ErrorException: require(pms.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php:15
+Stack trace:
+#0 /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php(15): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(pms.php...', '/home/ubuntu/wo...', 15, Array)
+#1 /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php(15): require()
+#2 /home/ubuntu/workspace/2017/lab4/assoc-laravel/app/Providers/RouteServiceProvider.php(58): require('/home/ubuntu/wo...')
+#3 [internal function]: App\Providers\RouteServiceProvider->App\Providers\{closure}(Object(Illuminate\Routing\Router))
+#4 /home/ubuntu/workspace/2017/lab4/assoc-laravel/vendor/laravel/framework/src/Illuminate/Routing/Router.php(330): call_user_func(Object(Closure), Object(Illuminate\Routing\Router))
+#5 /home/ubuntu/workspace/2017/lab4/assoc-laravel/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(237): Illuminate\Routing\Router->group( in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 15
+[16-Jan-2017 03:48:16 UTC] PHP Fatal error:  App\Providers\RouteServiceProvider::main(): Failed opening required 'pms.php' (include_path='.:/usr/share/php') in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 15
+[16-Jan-2017 03:50:05 UTC] PHP Warning:  Uncaught ErrorException: require(App\pms.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php:15
+Stack trace:
+#0 /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php(15): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(App\\pms...', '/home/ubuntu/wo...', 15, Array)
+#1 /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php(15): require()
+#2 /home/ubuntu/workspace/2017/lab4/assoc-laravel/app/Providers/RouteServiceProvider.php(58): require('/home/ubuntu/wo...')
+#3 [internal function]: App\Providers\RouteServiceProvider->App\Providers\{closure}(Object(Illuminate\Routing\Router))
+#4 /home/ubuntu/workspace/2017/lab4/assoc-laravel/vendor/laravel/framework/src/Illuminate/Routing/Router.php(330): call_user_func(Object(Closure), Object(Illuminate\Routing\Router))
+#5 /home/ubuntu/workspace/2017/lab4/assoc-laravel/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(237): Illuminate\Routing\Router->g in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 15
+[16-Jan-2017 03:50:05 UTC] PHP Fatal error:  App\Providers\RouteServiceProvider::main(): Failed opening required 'App\pms.php' (include_path='.:/usr/share/php') in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 15
+[16-Jan-2017 03:50:27 UTC] PHP Warning:  Uncaught ErrorException: require(app\pms.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php:15
+Stack trace:
+#0 /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php(15): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(app\\pms...', '/home/ubuntu/wo...', 15, Array)
+#1 /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php(15): require()
+#2 /home/ubuntu/workspace/2017/lab4/assoc-laravel/app/Providers/RouteServiceProvider.php(58): require('/home/ubuntu/wo...')
+#3 [internal function]: App\Providers\RouteServiceProvider->App\Providers\{closure}(Object(Illuminate\Routing\Router))
+#4 /home/ubuntu/workspace/2017/lab4/assoc-laravel/vendor/laravel/framework/src/Illuminate/Routing/Router.php(330): call_user_func(Object(Closure), Object(Illuminate\Routing\Router))
+#5 /home/ubuntu/workspace/2017/lab4/assoc-laravel/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(237): Illuminate\Routing\Router->g in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 15
+[16-Jan-2017 03:50:27 UTC] PHP Fatal error:  App\Providers\RouteServiceProvider::main(): Failed opening required 'app\pms.php' (include_path='.:/usr/share/php') in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 15
+[16-Jan-2017 03:51:08 UTC] PHP Warning:  Uncaught ErrorException: require(pms.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php:15
+Stack trace:
+#0 /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php(15): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(pms.php...', '/home/ubuntu/wo...', 15, Array)
+#1 /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php(15): require()
+#2 /home/ubuntu/workspace/2017/lab4/assoc-laravel/app/Providers/RouteServiceProvider.php(58): require('/home/ubuntu/wo...')
+#3 [internal function]: App\Providers\RouteServiceProvider->App\Providers\{closure}(Object(Illuminate\Routing\Router))
+#4 /home/ubuntu/workspace/2017/lab4/assoc-laravel/vendor/laravel/framework/src/Illuminate/Routing/Router.php(330): call_user_func(Object(Closure), Object(Illuminate\Routing\Router))
+#5 /home/ubuntu/workspace/2017/lab4/assoc-laravel/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(237): Illuminate\Routing\Router->group( in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 15
+[16-Jan-2017 03:51:08 UTC] PHP Fatal error:  App\Providers\RouteServiceProvider::main(): Failed opening required 'pms.php' (include_path='.:/usr/share/php') in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 15
+[16-Jan-2017 04:49:03 UTC] PHP Warning:  The use statement with non-compound name 'App' has no effect in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 13
+[16-Jan-2017 05:32:10 UTC] PHP Warning:  The use statement with non-compound name 'App' has no effect in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 13
+[16-Jan-2017 06:20:03 UTC] PHP Warning:  The use statement with non-compound name 'App' has no effect in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 13
+[16-Jan-2017 06:20:32 UTC] PHP Warning:  The use statement with non-compound name 'App' has no effect in /home/ubuntu/workspace/2017/lab4/assoc-laravel/routes/web.php on line 13

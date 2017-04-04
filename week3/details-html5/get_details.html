@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- 
+    HTML example using tables and forms, Chris McLean, Rodney Topor, 2003-2012
+    Modified to use new HTML5 fields and attributes.
+    (Uses an ugly mixture of CSS and HTML for presentation, without templates.)
+-->
+<html>
+<head>
+    <title>Get personal details</title>
+    
+    <meta charset="utf-8">
+    
+    <!-- External stylesheet -->
+    <link rel="stylesheet" href="../wp.css" type="text/css">
+    <!-- Embedded stylesheet -->
+    <style type="text/css">
+	table { margin-left: auto; margin-right: auto; }
+	th.col1 { text-align: right; }
+	th.col2 { text-align: left; }
+        td.col1 { text-align: right; vertical-align: top; background-color: #ABCDEF }
+        td.col2 { text-align: left; vertical-align: top; background-color: #FEDCBA }
+    </style>
+</head>
+
+<body>
+    <h2>Get personal details</h2>
+
+    <p>
+    <form method="get" action="show_details.php">
+      <table class="bordered"> 
+        <caption>Personal details form</caption>
+        <tr>
+            <th class="col1"> Property </th>
+            <th class="col2"> Value </th>
+        </tr>
+        <tr>
+            <td class="col1"> Name </td>
+            <td class="col2"> 
+	        <input type="text" name="name" size=30
+		       placeholder="Your name" required>
+	    </td>
+        </tr>
+        <tr>
+            <td class="col1"> Age </td>
+            <td class="col2">
+                <select name="age">
+                    <option> 0-20 </option>
+                    <option> 21-30 </option>
+                    <option> 31-40 </option>
+                    <option> 41-50 </option>
+                    <option> Over 50 </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="col1"> Nationality </td>
+            <td class="col2">
+		<input type="text" name="nationality" size=30
+		       list="nationalities">
+		<datalist id="nationalities">
+                    <option value="American">American</option>
+                    <option value="Australian" selected>Australian</option>
+                    <option value="British">British</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Indian">Indian</option>
+                    <option value="Indonesian">Indonesian</option>
+                </datalist>
+            </td>
+        </tr>
+        <tr>
+            <td class="col1"> Email </td>
+            <td class="col2"> <input type="email" name="email" size=30> </td>
+        </tr>
+        <tr>
+            <td class="col1"> Likes </td>
+            <td class="col2">
+                <input type="radio" name="likes" value="swimming">Swimming<br>
+                <input type="radio" name="likes" value="running">Running<br>
+                <input type="radio" name="likes" value="dancing">Dancing<br>
+                <input type="radio" name="likes" value="biking">Biking<br>
+                <input type="radio" name="likes" value="surfing">Surfing<br>
+            </td>
+        </tr>
+        <tr>
+            <td class="col1"> Dislikes </td>
+            <td class="col2">
+		<!-- The value of dislikes is an array of checked values -->
+                <input type="checkbox" name="dislikes[]" value="dogs">Dogs<br>
+                <input type="checkbox" name="dislikes[]" value="cats">Cats<br>
+                <input type="checkbox" name="dislikes[]" value="birds">Birds<br>
+                <input type="checkbox" name="dislikes[]" value="fish">Fish<br>
+                <input type="checkbox" name="dislikes[]" value="plants">Plants<br>
+            </td>
+        </tr>
+        <tr>
+            <td class="col1"> Description </td>
+            <td class="col2">
+                <textarea name="description" rows=2 cols=30></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan=2 style="text-align: center"> 
+                <input type="submit" name="submit" value="Submit">
+                <input type="reset"  name="reset"  value="Reset">
+            </td>
+        </tr>
+      </table>
+      </form>
+
+</body>
+</html>
