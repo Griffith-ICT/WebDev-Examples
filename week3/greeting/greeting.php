@@ -1,7 +1,7 @@
 <?php
 /*
 Script to print a greeting to a person who entered form data.
-BAD STYLE: Does not use templates.  Does not validate user input.
+BAD STYLE: Does not use templates.  Does not validate user input
 */
 
 $name = $_GET['name'];
