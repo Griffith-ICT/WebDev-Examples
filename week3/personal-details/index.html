@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- 
+    HTML example using tables and forms, Chris McLean, Rodney Topor, 2003-2008.
+    (Uses an ugly mixture of CSS and HTML for presentation, without templates.)
+	Updated 19/2/14 by David Chen - Removed table, used CSS for styling Form
+-->
+<html>
+<head>
+    <title>Get personal details</title>
+    
+    <meta charset="utf-8">
+    
+    <!-- External stylesheet -->
+    <link rel="stylesheet" href="styles/wp.css" type="text/css">
+</head>
+
+<body><div class="content">
+    <h2>Get personal details</h2>
+
+    <p>
+	<caption>Personal details form</caption>
+    <form method="get" action="show_details.php">
+        
+            <label> Name </label>
+            <input type="text" name="name" size=30> <br><br>
+            <label> Age </label>
+            <select name="age">
+                <option>  0-10 </option>
+                <option> 11-20 </option>
+                <option> 21-30 </option>
+                <option> 31-40 </option>
+                <option> 41-50 </option>
+                <option> Over 50 </option>
+            </select> <br><br>
+            <label> Country </label>
+            <input type="text" name="country" size=30> <br><br>
+			
+            <label> Likes </label>
+			<div class="choices">
+                <input type="radio" name="likes" value="swimming">Swimming<br>
+				<input type="radio" name="likes" value="running">Running<br>
+				<input type="radio" name="likes" value="dancing">Dancing<br>
+				<input type="radio" name="likes" value="biking">Biking<br>
+				<input type="radio" name="likes" value="surfing">Surfing
+			</div><br><br>
+            <label> Dislikes </label>
+ 		<!-- The value of dislikes is an array of checked values -->
+			<div class="choices">
+                <input type="checkbox" name="dislikes[]" value="dogs">Dogs<br>
+                <input type="checkbox" name="dislikes[]" value="cats">Cats<br>
+                <input type="checkbox" name="dislikes[]" value="birds">Birds<br>
+                <input type="checkbox" name="dislikes[]" value="fish">Fish<br>
+                <input type="checkbox" name="dislikes[]" value="plants">Plants
+			</div><br><br>
+            <label> Description </label>
+            <textarea name="description" rows=6 cols=30></textarea><br><br>
+                <input type="submit" name="submit" value="Submit">
+                <input type="reset"  name="reset"  value="Reset">
+      </form>
+
+</div></body>
+</html>
