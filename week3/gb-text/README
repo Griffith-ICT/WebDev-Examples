@@ -1,0 +1,3 @@
+Simple guestbook application that stores messages as plain text in file
+messages.txt.  It escapes text on output to avoid interpreting HTML and
+JavaScript on the client.  However, it does have the reload-redo problem.

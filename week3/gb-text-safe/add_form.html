@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- Add new entry form. -->
+<html>
+<head>
+<title>Guest Book Message Entry</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../wp.css">
+</head>
+
+<body>
+
+<h1>Message Entry Form</h1>
+
+<form method="post" action="add_action.php">
+<table>
+  <tr><td>Message:</td><td><input type="text" size=80 name="message"></td></tr>
+  <tr><td>Author:</td><td><input type="text" size=40 name="author"></td></tr>
+  <p class="antispam">Leave this empty: <input type="text" name="url" /></p> <!-- This hidden form field is for anti-spam, users won't see it -->
+  <tr><td colspan=2><input type="submit" value="Add message"></td></tr>
+</table>
+</form>
+
+<hr>
+<p>
+Sources:
+<a href="show.php?file=add_form.html">add_form.html</a>
+<a href="show.php?file=add_action.php">add_action.php</a>
+</p>
+
+</body>
+</html>
