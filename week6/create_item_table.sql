@@ -2,7 +2,7 @@ drop table if exists item;
 create table item (    
     id integer not null primary key autoincrement,    
     summary varchar(80) not null,    
-    details text default '‘
+    details text default ''
 ); 
 insert into item values (null, "Canon PowerShot S110",  "Excellent pocket camera.");
 insert into item values (null, "Canon EOS 700D", "Excellent entry-level digital SLR camera");
