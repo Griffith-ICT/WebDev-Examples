@@ -10,37 +10,37 @@ function search($name, $year, $state) {
 
     // Filter $pms by $name
     if (!empty($name)) {
-	$results = array();
-	foreach ($pms as $pm) {
-	    if (stripos($pm['name'], $name) !== FALSE) {
-		$results[] = $pm;
-	    }
-	}
-	$pms = $results;
+		$results = array();
+		foreach ($pms as $pm) {
+			if (stripos($pm['name'], $name) !== FALSE) {
+				$results[] = $pm;
+			}
+		}
+		$pms = $results;
     }
 
     // Filter $pms by $year
     if (!empty($year)) {
-	$results = array();
-	foreach ($pms as $pm) {
-	    if (strpos($pm['from'], $year) !== FALSE || 
-	        strpos($pm['to'], $year) !== FALSE) {
-		$results[] = $pm;
-	    }
-	}
-	$pms = $results;
+		$results = array();
+		foreach ($pms as $pm) {
+			if (strpos($pm['from'], $year) !== FALSE || 
+				strpos($pm['to'], $year) !== FALSE) {
+				$results[] = $pm;
+			}
+		}
+		$pms = $results;
     }
 
     // Filter $pms by $state
     if (!empty($state)) {
-	$results = array();
-	foreach ($pms as $pm) {
-	    if (stripos($pm['state'], $state) !== FALSE) {
-		$results[] = $pm;
-	    }
+		$results = array();
+		foreach ($pms as $pm) {
+			if (stripos($pm['state'], $state) !== FALSE) {
+				$results[] = $pm;
+			}
+		}
+		$pms = $results;
 	}
-	$pms = $results;
-    }
 
     return $pms;
 }
