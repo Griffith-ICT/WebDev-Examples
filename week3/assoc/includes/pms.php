@@ -22,7 +22,7 @@ $pms = array(
     array('index' => '15', 'name' => 'Frank Forde', 'from' => '6 July 1945', 'to' => '13 July 1945', 'party' => 'Labor', 'duration' => '0 years, 0 months, 8 days', 'state' => 'Queensland'),
     array('index' => '16', 'name' => 'Ben Chifley', 'from' => '13 July 1945', 'to' => '19 December 1949', 'party' => 'Labor', 'duration' => '4 years, 5 months, 7 days', 'state' => 'New South Wales'),
     array('index' => '-', 'name' => 'Robert Menzies', 'from' => '19 December 1949', 'to' => '26 January 1966', 'party' => 'Liberal', 'duration' => '16 years, 1 month, 8 days', 'state' => 'Victoria'),
-    array('index' => '17', 'name' => 'Harold Holt', 'from' => '26 January 1966', 'to' => '19 December 1967[5]', 'party' => 'Liberal', 'duration' => '1 year, 10 months, 23 days', 'state' => 'Victoria'),
+    array('index' => '17', 'name' => 'Harold Holt', 'from' => '26 January 1966', 'to' => '19 December 1967', 'party' => 'Liberal', 'duration' => '1 year, 10 months, 23 days', 'state' => 'Victoria'),
     array('index' => '18', 'name' => 'John McEwen', 'from' => '19 December 1967', 'to' => '10 January 1968', 'party' => 'Country', 'duration' => '0 years, 0 months, 23 days', 'state' => 'Victoria'),
     array('index' => '19', 'name' => 'John Gorton', 'from' => '10 January 1968', 'to' => '10 March 1971', 'party' => 'Liberal', 'duration' => '3 years, 2 months, 0 days', 'state' => 'Victoria'),
     array('index' => '20', 'name' => 'William McMahon', 'from' => '10 March 1971', 'to' => '5 December 1972', 'party' => 'Liberal', 'duration' => '1 year, 8 months, 25 days', 'state' => 'New South Wales'),
