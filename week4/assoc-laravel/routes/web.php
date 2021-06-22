@@ -27,7 +27,7 @@ Route::get('/', function()
 // To do: Perform search and display results
 Route::get('search', function()
 {
-  // Fetch form data
+  // Fetch form data.
 
   // call search() to perform search
 
