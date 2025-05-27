@@ -13,14 +13,4 @@
         <tr><td colspan=2><input type="submit" value="Submit"></td></tr>
     </table>
   </form>
-  <!-- Display Validation Errors -->
-  @if ($errors->any())
-    <div style="color: red;">
-      <ul>
-          @foreach ($errors->all() as $error)
-             <li>{{ $error }}</li>
-          @endforeach
-          </ul>
-      </div>
-  @endif
 @endsection
