@@ -2,84 +2,30 @@
 
 namespace Tests\Feature;
 
-
+use Tests\TestCase;
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Manufacturer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
-
 
 class ProductControllerTest extends TestCase
 {
-    use RefreshDatabase; 
+    use RefreshDatabase;
 
-    /**
-     * Test the product index page.
-     *
-     * @return void
-     */
-    public function test_product_index_page_is_displayed(): void
+    public function test_index_displays_products()
     {
-        Product::factory()->count(3)->create();
+        $products = Product::factory()->count(3)->create();
 
-        $response = $this->get('/product');
+        $response = $this->get('/');
 
         $response->assertStatus(200);
         $response->assertViewIs('products.index');
-        $response->assertViewHas('products');
-        $this->assertCount(3, $response->viewData('products'));
+        $response->assertViewHas('products', function ($viewProducts) use ($products) {
+            return $viewProducts->count() === $products->count();
+        });
     }
 
-    /**
-     * Test the product creation page.
-     *
-     * @return void
-     */
-    public function test_product_create_page_is_displayed(): void
-    {
-        Manufacturer::factory()->count(2)->create();
-
-        $response = $this->get('/product/create');
-
-        $response->assertStatus(200);
-        $response->assertViewIs('products.create_form');
-        $response->assertViewHas('manufacturers');
-        $this->assertCount(2, $response->viewData('manufacturers'));
-    }
-
-    /**
-     * Test storing a new product.
-     *
-     * @return void
-     */
-    public function test_product_can_be_stored(): void
-    {
-        $manufacturer = Manufacturer::factory()->create();
-        $productData = [
-            'name' => 'Awesome New Gadget',
-            'price' => 99.99,
-            'manufacturer' => $manufacturer->id, // Note: form field is 'manufacturer'
-        ];
-
-        $response = $this->post('/product', $productData);
-
-        $this->assertDatabaseHas('products', [
-            'name' => 'Awesome New Gadget',
-            'price' => 99.99,
-            'manufacturer_id' => $manufacturer->id,
-        ]);
-
-        $product = Product::first(); // Get the created product
-        $response->assertRedirect("/product/{$product->id}");
-    }
-
-    /**
-     * Test displaying a specific product.
-     *
-     * @return void
-     */
-    public function test_product_show_page_is_displayed(): void
+    public function test_show_displays_product_details()
     {
         $product = Product::factory()->create();
 
@@ -87,93 +33,142 @@ class ProductControllerTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertViewIs('products.show');
-        $response->assertViewHas('product', function ($viewProduct) use ($product) {
-            return $viewProduct->id === $product->id;
-        });
+        $response->assertViewHas('product', $product);
     }
 
-    /**
-     * Test displaying product not found.
-     * Note: Your current show method doesn't use findOrFail, so it might not return a 404.
-     * It will pass null to the view, which might cause an error in the view or render strangely.
-     * This test checks the current behavior.
-     */
-    public function test_product_show_page_for_non_existent_product(): void
+    public function test_create_form_requires_authentication()
     {
-        $response = $this->get("/product/999"); // Assuming 999 doesn't exist
-
-        // If you change your controller to use findOrFail(), this should be assertNotFound() or assertStatus(404)
-        $response->assertStatus(200); // Or whatever status it currently gives
-        $response->assertViewIs('products.show');
-        $response->assertViewHas('product', null);
+        $response = $this->get('/product/create');
+        $response->assertRedirect('/login');
     }
 
+    public function test_authenticated_user_can_view_create_form()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
-    /**
-     * Test the product editing page.
-     *
-     * @return void
-     */
-    public function test_product_edit_page_is_displayed(): void
+        $response = $this->get('/product/create');
+
+        $response->assertStatus(200);
+        $response->assertViewIs('products.create_form');
+        $response->assertViewHas('manufacturers');
+    }
+
+    public function test_guest_cannot_store_product()
+    {
+        $manufacturer = Manufacturer::factory()->create();
+
+        $response = $this->post('/product', [
+            'name' => 'Unauthorized Product',
+            'price' => 100,
+            'manufacturer' => $manufacturer->id,
+        ]);
+
+        $response->assertRedirect('/login');
+    }
+
+    public function test_store_validates_and_creates_product()
+    {
+        $user = User::factory()->create();
+        $manufacturer = Manufacturer::factory()->create();
+
+        $this->actingAs($user);
+
+        $response = $this->post('/product', [
+            'name' => 'Test Product',
+            'price' => 99.99,
+            'manufacturer' => $manufacturer->id,
+        ]);
+
+        $response->assertRedirectContains('/product/');
+        $this->assertDatabaseHas('products', [
+            'name' => 'Test Product',
+            'price' => 99.99,
+            'manufacturer_id' => $manufacturer->id,
+        ]);
+    }
+
+    public function test_guest_cannot_access_edit_form()
     {
         $product = Product::factory()->create();
-        Manufacturer::factory()->count(2)->create();
+
+        $response = $this->get("/product/{$product->id}/edit");
+        $response->assertRedirect('/login');
+    }
+
+
+    public function test_edit_form_displays_correct_data()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->create();
+
+        $this->actingAs($user);
 
         $response = $this->get("/product/{$product->id}/edit");
 
         $response->assertStatus(200);
         $response->assertViewIs('products.edit_form');
-        $response->assertViewHas('product', function ($viewProduct) use ($product) {
-            return $viewProduct->id === $product->id;
-        });
+        $response->assertViewHas('product', $product);
         $response->assertViewHas('manufacturers');
-        // +1 because the product's manufacturer is also a manufacturer
-        $this->assertCount(Manufacturer::count(), $response->viewData('manufacturers'));
     }
 
-    /**
-     * Test updating an existing product.
-     *
-     * @return void
-     */
-    public function test_product_can_be_updated(): void
+    public function test_guest_cannot_update_product()
     {
         $product = Product::factory()->create();
-        $newManufacturer = Manufacturer::factory()->create();
+        $manufacturer = Manufacturer::factory()->create();
 
-        $updateData = [
-            'name' => 'Updated Super Gadget',
-            'price' => 149.50,
-            'manufacturer' => $newManufacturer->id,
-        ];
+        $response = $this->patch("/product/{$product->id}", [
+            'name' => 'Hacked Name',
+            'price' => 999,
+            'manufacturer' => $manufacturer->id,
+        ]);
 
-        $response = $this->put("/product/{$product->id}", $updateData);
+        $response->assertRedirect('/login');
+    }
 
-        $this->assertDatabaseHas('products', [
-            'id' => $product->id,
-            'name' => 'Updated Super Gadget',
-            'price' => 149.50,
-            'manufacturer_id' => $newManufacturer->id,
+    public function test_update_modifies_product()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->create();
+        $manufacturer = Manufacturer::factory()->create();
+
+        $this->actingAs($user);
+
+        $response = $this->patch("/product/{$product->id}", [
+            'name' => 'Updated Name',
+            'price' => 150.00,
+            'manufacturer' => $manufacturer->id,
         ]);
 
         $response->assertRedirect("/product/{$product->id}");
+        $this->assertDatabaseHas('products', [
+            'id' => $product->id,
+            'name' => 'Updated Name',
+            'price' => 150.00,
+            'manufacturer_id' => $manufacturer->id,
+        ]);
     }
 
-    /**
-     * Test deleting a product.
-     *
-     * @return void
-     */
-    public function test_product_can_be_deleted(): void
+    public function test_guest_cannot_delete_product()
     {
         $product = Product::factory()->create();
 
         $response = $this->delete("/product/{$product->id}");
 
-        $this->assertDatabaseMissing('products', ['id' => $product->id]);
-        // Or use assertSoftDeleted if using soft deletes
-        // $this->assertSoftDeleted('products', ['id' => $product->id]);
-
-        $response->assertRedirect('/product');
+        $response->assertRedirect('/login');
     }
+
+    public function test_destroy_deletes_product()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->create();
+
+        $this->actingAs($user);
+
+        $response = $this->delete("/product/{$product->id}");
+
+        $response->assertRedirect('/');
+        $this->assertDatabaseMissing('products', ['id' => $product->id]);
+    }
+
 }
